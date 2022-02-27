@@ -3,7 +3,7 @@ class Task {
   bool isDone;
   Task({required this.name, this.isDone = false});
 
-  void toggle() {
+  void toggleDone() {
     isDone = !isDone;
   }
 }

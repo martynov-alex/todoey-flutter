@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:todoey/screens/tasks_screen.dart';
+import 'package:todoey/models/task.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  const AddTaskScreen({Key? key}) : super(key: key);
+  final Function addTaskCallBack;
+
+  AddTaskScreen({required this.addTaskCallBack});
 
   @override
   Widget build(BuildContext context) {
+    String taskText = '';
     return Container(
       padding:
           EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
@@ -18,16 +23,21 @@ class AddTaskScreen extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 25, color: Colors.lightGreen),
           ),
-          const TextField(
+          TextField(
             autofocus: true,
             minLines: 1,
             maxLines: 3,
             textCapitalization: TextCapitalization.sentences,
             keyboardType: TextInputType.text,
+            onChanged: (value) {
+              taskText = value;
+            },
           ),
           const SizedBox(height: 20),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              addTaskCallBack(taskText);
+            },
             child: const Text(
               'Add',
             ),
