@@ -1,25 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey/models/task_data.dart';
 import 'package:todoey/widgets/task_list.dart';
 import 'package:todoey/screens/add_task_screen.dart';
-import 'package:todoey/models/task.dart';
 
-class TasksScreen extends StatefulWidget {
-  const TasksScreen({Key? key}) : super(key: key);
-
-  @override
-  State<TasksScreen> createState() => _TasksScreenState();
-}
-
-class _TasksScreenState extends State<TasksScreen> {
-  // Widget buildBottomSheet(BuildContext context) => Container();
-  List<Task> tasksList = [
-    Task(name: 'Buy milk'),
-    Task(name: 'Buy bread'),
-    Task(name: 'Buy eggs'),
-  ];
-
+class TasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    AppProvider tasksData = Provider.of<AppProvider>(context);
     return Scaffold(
       backgroundColor: Colors.lightGreen,
       body: SafeArea(
@@ -60,7 +48,7 @@ class _TasksScreenState extends State<TasksScreen> {
                           fontWeight: FontWeight.bold,
                           color: Colors.white),
                     ),
-                    Text('${tasksList.length} Tasks',
+                    Text('${tasksData.tasksCounter} Tasks',
                         style: TextStyle(fontSize: 16, color: Colors.white)),
                   ],
                 ),
@@ -76,9 +64,13 @@ class _TasksScreenState extends State<TasksScreen> {
                     topRight: Radius.circular(20),
                   ),
                 ),
-                child: TasksList(tasks: tasksList),
+                child: TasksList(),
               ),
             ),
+            Container(
+              height: 80,
+              color: Colors.white,
+            )
           ],
         ),
       ),
@@ -93,14 +85,7 @@ class _TasksScreenState extends State<TasksScreen> {
                 topRight: Radius.circular(20),
               ),
             ),
-            builder: (context) => AddTaskScreen(
-              addTaskCallBack: (newTaskTitle) {
-                setState(() {
-                  tasksList.add(Task(name: newTaskTitle));
-                });
-                Navigator.pop(context);
-              },
-            ),
+            builder: (context) => AddTaskScreen(),
           );
         },
         tooltip: 'Add task',

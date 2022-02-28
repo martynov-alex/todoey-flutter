@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:todoey/screens/tasks_screen.dart';
-import 'package:todoey/models/task.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey/models/task_data.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  final Function addTaskCallBack;
-
-  AddTaskScreen({required this.addTaskCallBack});
-
   @override
   Widget build(BuildContext context) {
+    AppProvider tasksData = Provider.of<AppProvider>(context);
     String taskText = '';
     return Container(
       padding:
@@ -36,7 +33,8 @@ class AddTaskScreen extends StatelessWidget {
           const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
-              addTaskCallBack(taskText);
+              tasksData.addTask(taskText);
+              Navigator.pop(context);
             },
             child: const Text(
               'Add',

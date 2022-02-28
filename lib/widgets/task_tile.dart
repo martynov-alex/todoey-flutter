@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:todoey/models/task.dart';
 
 class TaskTile extends StatelessWidget {
   final String taskTitle;
   final bool isChecked;
   final Function(bool?) toggleCheckbox;
+  final Function()? longPressCallback;
 
   TaskTile(
       {required this.taskTitle,
       required this.isChecked,
-      required this.toggleCheckbox});
+      required this.toggleCheckbox,
+      required this.longPressCallback});
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onLongPress: longPressCallback,
       title: Text(
         taskTitle,
         style: TextStyle(
