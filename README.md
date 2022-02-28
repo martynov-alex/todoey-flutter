@@ -7,3 +7,4 @@ The app was made as a part of [Flutter Development Bootcamp with Dart](https://g
 
 ![Screenshot 1](https://raw.githubusercontent.com/martynov-alex/todoey-flutter/main/blob/Screenshot_1.png)
 ![Screenshot 2](https://raw.githubusercontent.com/martynov-alex/todoey-flutter/main/blob/Screenshot_2.png)
+![Screenshot 3](https://raw.githubusercontent.com/martynov-alex/todoey-flutter/main/blob/Screenshot_3.png)
